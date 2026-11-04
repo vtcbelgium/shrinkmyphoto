@@ -1,3 +1,4 @@
+// [HARVESTED TO OTHRYS-BLOCKS] target: blocks/media/client-canvas-compressor/index.ts | date: 2026-11-05 | status: HARVEST_RETAIN
 export type Format = 'image/jpeg' | 'image/png' | 'image/webp';
 export const MAX_BYTES = 20_000_000;
 export const MAX_PIXELS = 24_000_000;
