@@ -1,0 +1,180 @@
+{
+  "target_utility": {
+    "name": "ShrinkMyPhoto",
+    "slug": "shrinkmyphoto",
+    "domain": "shrinkmyphoto.othrys.be",
+    "mission": "Sovereign client-side photo compression with precision target KB sizing and zero cloud data leaks."
+  },
+  "recon_metadata": {
+    "titan": "METIS",
+    "timestamp": "2026-11-06T00:20:00Z",
+    "version": "1.0.0"
+  },
+  "current_engine_audit": {
+    "architecture": "100% in-browser client-side execution",
+    "core_primitives": [
+      "createImageBitmap(file, { imageOrientation: 'from-image' })",
+      "HTMLCanvasElement.toBlob(blob, format, quality)",
+      "DataView header inspection (magic bytes for PNG, WebP, JPEG)"
+    ],
+    "algorithm": {
+      "type": "Coupled Geometric Resizing + Quality Bisection Search",
+      "search_budget": "Up to 8 dimension passes x 7 quality bisection steps (max 56 encodes)",
+      "quality_range": [0.18, 0.94],
+      "downscale_heuristic": "Math.min(0.8, Math.max(0.25, Math.sqrt(target / smallestAtSize) * 0.9))",
+      "dimension_caps": {
+        "max_bytes": 20000000,
+        "max_pixels": 24000000,
+        "max_edge": 16384
+      }
+    },
+    "security_profile": {
+      "cloud_uploads": false,
+      "csp_enforced": "default-src 'self'; img-src 'self' blob: data:; form-action 'none'",
+      "cookies_analytics": false,
+      "server_costs_per_compression": 0
+    }
+  },
+  "competitor_teardown": [
+    {
+      "name": "TinyPNG / Tinify",
+      "market_share_tier": "Dominant incumbent",
+      "pricing_model": "Freemium ($39/yr Web Pro, API pay-per-image above 500/mo)",
+      "free_tier_limits": {
+        "file_size_cap": "5 MB hard limit",
+        "batch_limit": "20 images",
+        "monthly_limit": "500 API calls"
+      },
+      "dark_patterns_and_friction": [
+        "Hard 5MB file size wall directly blocks modern smartphone photos (6-15MB)",
+        "Forces cloud server upload of personal/confidential images",
+        "Upsell modal blocks larger files to force annual Web Pro subscription",
+        "Automatic annual renewals with customer billing friction"
+      ],
+      "user_grievances_sentiment": [
+        "Reddit r/webdev: Frustration when high-res mockups or uncompressed raw exports exceed 5MB",
+        "Trustpilot/Dev.to: Corporate security & NDA violations uploading unreleased brand assets to remote servers",
+        "No target file size control (user cannot request 'under 200 KB' for government uploads)"
+      ]
+    },
+    {
+      "name": "ILoveIMG",
+      "market_share_tier": "High volume suite",
+      "pricing_model": "Freemium ($4-$7/mo recurring)",
+      "free_tier_limits": {
+        "file_size_cap": "Restricted on free tier (typically 15-25MB)",
+        "batch_limit": "15-30 tasks daily/batch caps",
+        "bandwidth_throttle": "Queued server processing"
+      },
+      "dark_patterns_and_friction": [
+        "Heavy upsell banners and popups urging Premium conversion",
+        "Server-side storage of user images (temporary AWS retention)",
+        "Strict limits on daily tasks and batch sizes to nudge recurring billing",
+        "Aggressive auto-renewal subscription traps"
+      ],
+      "user_grievances_sentiment": [
+        "Sudden paywall cutoffs midway through batch workflows",
+        "Loss of control over exact quality degradation vs dimension reduction",
+        "Privacy risks uploading government IDs and personal documents"
+      ]
+    },
+    {
+      "name": "CompressJPEG / CompressPNG (123Apps/Media)",
+      "market_share_tier": "High organic search volume",
+      "pricing_model": "Ad-supported / Subscription upgrades",
+      "free_tier_limits": {
+        "file_size_cap": "20 MB",
+        "batch_limit": "20 files",
+        "control_level": "Global quality slider only (black box guessing)"
+      },
+      "dark_patterns_and_friction": [
+        "Heavy programmatic display ads with deceptive CTA buttons ('Start Now / Download')",
+        "Uploads all user media to third-party web servers",
+        "Zero target KB input: users must guess percentage and inspect output repeatedly",
+        "Manual multi-step download dance"
+      ],
+      "user_grievances_sentiment": [
+        "Reddit r/compression: Repeated trial-and-error slider adjustments needed to hit visa/passport KB limits",
+        "Lack of clipboard support; requires downloading, renaming, re-uploading",
+        "Display ad clutter creating phishing/malware confusion"
+      ]
+    },
+    {
+      "name": "FreeConvert",
+      "market_share_tier": "Universal utility aggregator",
+      "pricing_model": "Freemium ($9.99-$25/mo subscription or credits)",
+      "free_tier_limits": {
+        "file_size_cap": "1 GB general, throttled queues",
+        "daily_limit": "25 conversion minutes daily",
+        "queue_priority": "Low speed, delayed processing for free users"
+      },
+      "dark_patterns_and_friction": [
+        "Daily 'conversion minute' artificial throttling gate",
+        "Misleading ad placements mimicking converter interfaces",
+        "Automatic recurring billing charges reported on Trustpilot disputes",
+        "Cloud upload to AWS S3 instances"
+      ],
+      "user_grievances_sentiment": [
+        "Trustpilot: 1-star complaints on unexpected renewal fees after trial runs",
+        "Frustration when hitting the daily 25-minute limit mid-task",
+        "Slow upload and download times for multiple images"
+      ]
+    }
+  ],
+  "unmet_user_needs": [
+    {
+      "category": "Target KB Compliance",
+      "insight": "Government portals, visa agencies (US DV Lottery, Schengen, Indian Visa), job boards (Workday, Taleo), and university forms mandate strict caps (e.g. <240KB, <200KB, <50KB). Existing tools only give arbitrary quality % sliders, forcing users into 5-10 frustrating upload/download iterations."
+    },
+    {
+      "category": "Sensitive Document Privacy",
+      "insight": "Users compressing driver licenses, passport scans, tax slips, or medical cards are terrified of cloud upload leaks. IT/dev teams handling client brand assets cannot violate NDAs by uploading to TinyPNG."
+    },
+    {
+      "category": "Modern File Size Rejection",
+      "insight": "Modern smartphones shoot 6MB to 16MB photos by default. Incumbent 5MB limits (TinyPNG) outright reject ordinary phone photos before any compression can begin."
+    },
+    {
+      "category": "Frictionless Workflow (Clipboard-First)",
+      "insight": "Users taking screenshots with Windows Snipping Tool (Win+Shift+S) or copying web images want to paste directly into the compressor and copy the compressed result directly back to Slack/email without saving junk files to disk."
+    }
+  ],
+  "sovereign_unfair_advantage": {
+    "zero_cloud_leak": "Zero bytes transferred over the network. 100% processed via WebAssembly/Canvas in browser memory. Verifiable by inspecting DevTools Network tab.",
+    "infinite_scalability": "Zero server compute costs. $0 infrastructure overhead allows forever-free, unlimited local compression without ads or subscriptions.",
+    "precision_bisection_engine": "Binary search algorithm mathematical convergence to <= target KB with maximum possible visual fidelity and resolution retention.",
+    "instant_latency": "No network round-trip, no upload queues, no server processing delays."
+  },
+  "killer_feature_disruption_roadmap": [
+    {
+      "id": "FEAT-CLIPBOARD-IO",
+      "name": "Full Clipboard Ingestion & Export",
+      "priority": "P0",
+      "description": "Global Ctrl+V / Paste listener reading images directly from system clipboard (e.g. Snipping Tool), plus a 'Copy Image to Clipboard' button using navigator.clipboard.write([new ClipboardItem()]) for immediate pasting into Slack/Discord/Email without saving to disk."
+    },
+    {
+      "id": "FEAT-BUREAUCRATIC-PRESETS",
+      "name": "Bureaucratic & Practical Target KB Presets",
+      "priority": "P0",
+      "description": "One-click preset chips: 'Visa / Passport (< 200 KB)', 'Gov Portal / ID (< 100 KB)', 'Fast Web Hero (< 150 KB)', 'Email Friendly (< 500 KB)', 'Discord Free Tier (< 10 MB)'."
+    },
+    {
+      "id": "FEAT-SIDE-BY-SIDE-INSPECT",
+      "name": "Side-by-Side Zoom & Split Compare",
+      "priority": "P1",
+      "description": "Split comparison slider showing original vs compressed image at 100% pixel scale so users can verify text readability and face sharpness before saving."
+    },
+    {
+      "id": "FEAT-METADATA-PRIVACY-SHIELD",
+      "name": "Forensic EXIF / GPS Scrubbing Indicator",
+      "priority": "P1",
+      "description": "Visual confirmation badge verifying that sensitive GPS coordinates, camera serial numbers, and personal timestamps have been cleanly expunged upon canvas re-encoding."
+    },
+    {
+      "id": "FEAT-OFFLINE-PWA",
+      "name": "Air-Gapped Offline PWA",
+      "priority": "P2",
+      "description": "Service worker caching enabling offline functionality on flights, secure government labs, or air-gapped terminals with zero connectivity."
+    }
+  ]
+}

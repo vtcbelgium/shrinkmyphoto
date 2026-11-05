@@ -1,44 +1,372 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Free Image Compressor to Target KB | ShrinkMyPhoto</title>
-  <meta name="description" content="Compress JPEG, PNG and WebP photos in your browser. Choose a maximum KB size, preview the result, and download without uploading your images.">
+  <meta name="description" content="Compress JPEG, PNG and WebP photos directly in your browser. Choose an exact KB target size (Passport, US Visa, Gov Forms, Discord) with zero cloud uploads.">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="Free Image Compressor to Target KB | ShrinkMyPhoto">
-  <meta property="og:description" content="Compress JPEG, PNG and WebP photos in your browser. Choose a maximum KB size, preview the result, and download without uploading your images.">
-  <meta property="og:type" content="website"><meta name="theme-color" content="#f8f9f4">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' blob: data:; style-src 'self'; script-src 'self'; connect-src 'self' ws://127.0.0.1:*; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta property="og:description" content="Compress JPEG, PNG and WebP photos directly in your browser. Choose an exact KB target size with zero cloud uploads.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#000000">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' blob: data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' ws://127.0.0.1:*; object-src 'none'; base-uri 'self'; form-action 'none'">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="/src/style.css">
-  <script type="module" src="/src/main.ts"></script>
-
   <link rel="canonical" href="https://shrinkmyphoto.othrys.be/">
   <meta property="og:url" content="https://shrinkmyphoto.othrys.be/">
   <meta name="twitter:card" content="summary">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ShrinkMyPhoto","url":"https://shrinkmyphoto.othrys.be/","description":"Compress JPEG, PNG and WebP photos in your browser. Choose a maximum KB size, preview the result, and download without uploading your images.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true}</script>
+
+  <!-- Instant Non-Flashing Theme Boot -->
+  <script>
+    (function() {
+      try {
+        var stored = localStorage.getItem('othrys-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = (stored === 'oled' || stored === 'dark') ? 'dark' : (stored === 'paper' || stored === 'light') ? 'light' : (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ShrinkMyPhoto",
+    "url": "https://shrinkmyphoto.othrys.be/",
+    "description": "Compress JPEG, PNG and WebP photos directly in your browser. Choose an exact KB target size with zero cloud uploads.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "isAccessibleForFree": true
+  }
+  </script>
 </head>
 <body>
-<a class="skip" href="#compressor">Skip to compressor</a>
-<header class="site-header wrap"><a class="brand othrys-brand" href="#" aria-label="ShrinkMyPhoto home"><span class="brand-main">ShrinkMy<strong>Photo</strong></span><small class="brand-signature">an OTHRYS utility</small></a><nav aria-label="Main"><a href="#how-it-works">How it works</a><a href="#privacy">Privacy</a><a href="#faq">FAQ</a></nav></header>
-<main class="wrap">
-  <section class="hero" aria-labelledby="headline"><p class="eyebrow">FREE · PRIVATE · BROWSER-BASED</p><h1 id="headline">Compress photos online</h1><p class="intro">Reduce JPEG, PNG, or WebP file size without uploading your image. Choose a maximum size, preview the result, and download.</p><div class="hero-notes"><span>✓ No sign-up</span><span>✓ Free to use</span><span>✓ Stays on your device</span></div></section>
-  <section id="compressor" class="workspace" aria-label="Image compressor">
-    <div class="workspace-top"><h2>Image compressor</h2><span class="local-badge">◉ &nbsp; Local processing</span></div>
-    <div class="editor-grid"><div class="source-panel">
-      <div id="drop-zone" class="drop-zone"><div class="upload-icon" aria-hidden="true">↥</div><h3>Drop your photo here</h3><p>or choose one from your device</p><label class="button primary file-label">Choose a photo<input id="file" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="file-help"></label><p id="file-help" class="small">JPEG, PNG or WebP · Up to 20 MB / 24 MP<br>One still image at a time. No animated images.</p></div>
-      <div id="source-info" hidden><div class="file-heading"><strong id="filename"></strong><button id="clear" class="text-button" type="button">Remove</button></div><figure class="preview"><img id="original" alt="Original selected photo"><figcaption>Original</figcaption></figure><p id="original-stats" class="stats"></p><p class="small">To change your photo, use Choose a photo above.</p></div>
+  <a class="skip" href="#compressor">Skip to compressor</a>
+
+  <!-- SOVEREIGN HEADER BLOCK: CLEAN & MINIMAL (SILICON VALLEY STANDARD) -->
+  <header class="site-header">
+    <div class="header-left">
+      <a class="brand othrys-brand" href="./" aria-label="ShrinkMyPhoto home">
+        <div class="brand-row">
+          <span class="brand-logo-mark" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+          </span>
+          <span class="brand-main">ShrinkMy<strong>Photo</strong></span>
+          <span class="sovereign-status-badge" title="No cloud uploads, tracking, or registration required">Sovereign</span>
+        </div>
+        <small class="brand-signature">powered by OTHRYS</small>
+      </a>
     </div>
-    <form id="settings" class="settings"><p class="step-label">OUTPUT SETTINGS</p><h3>Choose your file size</h3><label for="target">Maximum file size <span>KB</span></label><input id="target" type="number" min="1" max="20000" step="1" value="200" required aria-describedby="target-help"><p id="target-help" class="small">1 KB = 1,000 bytes. We’ll aim for this size or less.</p><div class="presets" aria-label="Size presets"><button type="button" data-size="100">100 KB</button><button type="button" data-size="200" aria-pressed="true">200 KB</button><button type="button" data-size="500">500 KB</button></div>
-      <label for="resize">Longest edge <span>optional</span></label><select id="resize"><option value="0">Keep original dimensions if possible</option><option value="2560">Up to 2560 px</option><option value="1920">Up to 1920 px</option><option value="1280">Up to 1280 px</option><option value="800">Up to 800 px</option></select>
-      <label for="format">Save as</label><select id="format"><option value="keep">Same format as original</option><option value="image/webp">WebP · supports transparency</option><option value="image/png">PNG · preserves transparency</option><option value="image/jpeg">JPEG · white background</option></select><p id="format-help" class="small">PNG keeps transparency. JPEG fills transparent areas with white.</p><label id="flatten-wrap" class="checkbox" hidden><input id="flatten" type="checkbox"> I agree to replace transparency with white for JPEG.</label>
-      <button id="compress" class="button primary compress" type="submit" disabled>Shrink my photo <span aria-hidden="true">↘</span></button><p class="small bottom-note">We may reduce dimensions to reach your target.<br>You always get to preview the result.</p>
-    </form></div>
-    <p id="status" class="status" role="status" aria-live="polite">Ready when you are. Your photo never leaves this device.</p><p id="error" class="error" role="alert" hidden></p>
-    <section id="result" class="result" aria-labelledby="result-title" hidden><div><p class="step-label">READY FOR A SECOND LOOK</p><h3 id="result-title">A lighter photo, ready to go.</h3><p id="result-stats" class="stats"></p><p id="target-result"></p><a id="download" class="button primary">Download photo <span aria-hidden="true">↓</span></a></div><figure class="preview"><img id="optimized" alt="Compressed photo preview"><figcaption>After compression</figcaption></figure></section>
-  </section>
-  <section id="how-it-works" class="how" aria-labelledby="how-title"><div class="section-heading"><p class="eyebrow">HOW IT WORKS</p><h2 id="how-title">Compress an image in three steps</h2></div><div class="steps"><article><span>01</span><h3>Pick your photo</h3><p>A holiday snap, a profile picture, a form attachment. Start with a JPEG, PNG or WebP.</p></article><article><span>02</span><h3>Set your size</h3><p>Choose a maximum file size. We balance quality and dimensions to get it as close as we can.</p></article><article><span>03</span><h3>Preview & keep</h3><p>Check the detail, compare the sizes, and download your new image. Your original stays untouched.</p></article></div></section>
-  <section id="privacy" class="privacy"><span class="privacy-icon" aria-hidden="true">⌂</span><div><p class="eyebrow">YOUR PHOTOS ARE PERSONAL</p><h2>They should stay that way.</h2><p>Your browser does all the work. Photo files are never uploaded, stored on a server, or sent to an image service. No accounts, cookies, analytics, or tracking scripts. We don’t save your images in browser storage either.</p><p class="small">The site host can receive normal page requests (including your IP address), but not your photos. Image previews live in temporary browser memory and are released when replaced or when you leave. Downloaded files stay wherever you save them.</p></div></section>
-  <section id="faq" class="faq"><div><p class="eyebrow">HELP</p><h2>Frequently asked questions</h2></div><div class="questions"><details><summary>Will my photo still look good?</summary><p>JPEG and WebP use lossy compression; fine detail may change. We try higher quality first, then lower quality and smaller dimensions as needed. PNG uses lossless encoding, but resizing still changes pixels. Compare both previews before downloading.</p></details><details><summary>Can you guarantee an exact file size?</summary><p>No. We use a bounded search to try to stay under your maximum, not match it exactly. If the target cannot be reached, we show the smallest result found and clearly label it as over target. Tiny targets can make images too small to be useful.</p></details><details><summary>What happens to transparency and animation?</summary><p>PNG and WebP output retain transparency. Converting either to JPEG requires your agreement to a white background. Animated PNG and WebP are rejected; GIF, HEIC, SVG and other formats are not supported.</p></details><details><summary>What about rotation, metadata and large photos?</summary><p>Modern browsers apply the image’s orientation when decoding. Check the preview before saving. Canvas re-encoding generally removes EXIF metadata, including GPS, but this is not a forensic metadata removal tool. Colors can vary by browser. Files are limited to 20 MB, 24 million pixels and 16,384 pixels per edge to protect device memory; some devices have lower limits.</p></details><details><summary>Why might compression fail?</summary><p>A damaged file, unsupported browser codec, or insufficient device memory can prevent processing. Try a smaller still image or a current Chrome, Edge, Firefox or Safari browser. WebP encoding support varies; we report unsupported output instead of silently changing formats.</p></details></div></section>
-</main><footer class="wrap"><a class="brand" href="#">ShrinkMyPhoto<span class="brand-dot">.</span></a><p>Browser-only image compression.</p><span>an OTHRYS utility</span></footer>
-</body></html>
+
+    <div class="header-actions">
+      <a href="https://othrys.be/architecture" target="_blank" rel="noopener noreferrer" class="nav-fleet-pill" title="View Sovereign Fleet Telemetry">Fleet ↗</a>
+      <button type="button" id="theme-toggle" class="icon-toggle-btn" aria-label="Toggle dark/light theme" title="Toggle theme">◐</button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- HERO SECTION -->
+    <section class="intro" aria-labelledby="headline">
+      <div class="hero-badge-wrap">
+        <p class="eyebrow"><span class="eyebrow-dot"></span><span>FREE · PRIVATE · 100% IN-BROWSER</span></p>
+      </div>
+      <h1 id="headline">Compress photos to exact KB size</h1>
+      <p class="hero-sub">Reduce JPEG, PNG, or WebP file size without uploading your images to remote servers. Meet strict visa, passport, and portal upload limits in seconds.</p>
+    </section>
+
+    <!-- WORKSPACE COMPRESSOR SECTION -->
+    <section id="compressor" class="workspace-section" aria-label="Image compressor">
+      <div class="workspace-card">
+        <div class="workspace-top">
+          <div class="step-badge-wrap">
+            <span>01 / SELECT &amp; CONFIGURE</span>
+            <span class="local-badge">◉ LOCAL CANVAS PROCESSING</span>
+          </div>
+          <h2>Image Compressor</h2>
+        </div>
+
+        <div class="editor-grid">
+          <!-- Left: Source / Dropzone -->
+          <div class="source-panel">
+            <div id="drop-zone" class="drop-zone" tabindex="0" role="button" aria-label="Drop photo here, browse, or paste with Ctrl+V">
+              <div class="upload-icon" aria-hidden="true">
+                <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+              </div>
+              <h3>Drag &amp; drop your photo here</h3>
+              <p class="drop-sub">or <span class="browse-link">browse from your computer</span></p>
+              <label class="button primary file-label">
+                <span>Choose a photo</span>
+                <input id="file" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="file-help">
+              </label>
+              <p id="file-help" class="small-hint">Supports JPEG, PNG or WebP · Up to 20 MB<br>Or press <strong>Ctrl+V / ⌘+V</strong> to paste from clipboard</p>
+            </div>
+
+            <div id="source-info" hidden>
+              <div class="file-heading">
+                <strong id="filename"></strong>
+                <button id="clear" class="text-button" type="button">Remove</button>
+              </div>
+              <figure class="preview">
+                <img id="original" alt="Original photo">
+                <figcaption>Original</figcaption>
+              </figure>
+              <p id="original-stats" class="stats"></p>
+            </div>
+          </div>
+
+          <!-- Right: Output Settings Form -->
+          <form id="settings" class="settings" novalidate>
+            <p class="step-label">OUTPUT TARGET</p>
+            <h3>Choose Target File Size</h3>
+
+            <label for="target" class="field-label">
+              <span>Maximum Target Size</span>
+              <span class="unit-badge">KB</span>
+            </label>
+            <input id="target" type="number" min="1" max="20000" step="1" value="200" required aria-describedby="target-help">
+            <p id="target-help" class="small-help">1 KB = 1,000 bytes. Our bisection algorithm mathematically scales dimensions and quality to hit this target or less.</p>
+
+            <!-- 1-Click Bureaucratic & Practical Presets -->
+            <div class="presets-section">
+              <span class="presets-label">1-Click Portal Presets:</span>
+              <div class="presets-grid" aria-label="Bureaucratic and portal size presets">
+                <button type="button" class="preset-pill" data-size="200" aria-pressed="true" title="Schengen Visa & European Passports">200 KB · Passport / Visa</button>
+                <button type="button" class="preset-pill" data-size="240" title="US State Department & DV Lottery">240 KB · US Visa</button>
+                <button type="button" class="preset-pill" data-size="100" title="State, University & Job Portals">100 KB · Gov Forms</button>
+                <button type="button" class="preset-pill" data-size="500" title="Email friendly attachment">500 KB · Email</button>
+                <button type="button" class="preset-pill" data-size="1000" title="Web & Blog Hero - 1 MB">1 MB · Web Hero</button>
+                <button type="button" class="preset-pill" data-size="10000" title="Discord Free Upload Limit">10 MB · Discord</button>
+              </div>
+            </div>
+
+            <label for="resize" class="field-label">Longest Edge (Optional Cap)</label>
+            <select id="resize">
+              <option value="0" selected>Keep original dimensions if possible</option>
+              <option value="2560">Up to 2560 px</option>
+              <option value="1920">Up to 1920 px (Full HD)</option>
+              <option value="1280">Up to 1280 px (HD)</option>
+              <option value="800">Up to 800 px (Small Form)</option>
+            </select>
+
+            <label for="format" class="field-label">Save As Format</label>
+            <select id="format">
+              <option value="keep" selected>Same format as original</option>
+              <option value="image/webp">WebP (Modern, high compression)</option>
+              <option value="image/png">PNG (Preserves alpha transparency)</option>
+              <option value="image/jpeg">JPEG (Solid white background)</option>
+            </select>
+
+            <label id="flatten-wrap" class="checkbox" hidden>
+              <input id="flatten" type="checkbox"> 
+              <span>I agree to replace transparency with white background for JPEG.</span>
+            </label>
+
+            <button id="compress" class="button primary compress-btn" type="submit" disabled>
+              <span>Shrink My Photo</span>
+              <span aria-hidden="true">↘</span>
+            </button>
+            <p class="small-help text-center">Zero network latency. All computation runs on your device's browser engine.</p>
+          </form>
+        </div>
+
+        <p id="status" class="status-bar" role="status" aria-live="polite">Ready when you are. Your photo never leaves this device.</p>
+        <p id="error" class="error-banner" role="alert" hidden></p>
+
+        <!-- Result Section -->
+        <section id="result" class="result-section" aria-labelledby="result-title" hidden>
+          <div class="result-info">
+            <div class="result-header">
+              <span class="result-tag">COMPRESSION SUCCESSFUL</span>
+              <span class="result-scrubbed">✓ EXIF &amp; GPS Scrubbed</span>
+            </div>
+            <h3 id="result-title">Optimized &amp; Ready</h3>
+            <p id="result-stats" class="stats-highlight"></p>
+            <p id="target-result" class="target-message"></p>
+            
+            <div class="result-actions">
+              <a id="download" class="button primary">Download Photo <span aria-hidden="true">↓</span></a>
+              <button type="button" id="copy-image" class="button secondary" title="Copy compressed image directly to clipboard for Slack, Figma, or Mail">Copy Image 📋</button>
+            </div>
+          </div>
+          <figure class="preview result-preview">
+            <img id="optimized" alt="Compressed photo preview">
+            <figcaption>Optimized Result</figcaption>
+          </figure>
+        </section>
+      </div>
+    </section>
+
+    <!-- VALUE PROPOSITIONS STRIP -->
+    <div class="promises">
+      <div class="promise-item"><span aria-hidden="true">◎</span> <span>100% In-Browser</span></div>
+      <div class="promise-item"><span aria-hidden="true">◇</span> <span>Zero Cloud Uploads</span></div>
+      <div class="promise-item"><span aria-hidden="true">↓</span> <span>Safe for Passports &amp; IDs</span></div>
+    </div>
+
+    <!-- METIS CONSUMER ADVISORY: THE 5MB TRAP & PRIVACY EXPOSURE -->
+    <section class="anti-scam-section" id="security-advisory" aria-labelledby="advisory-title">
+      <div class="anti-scam-card">
+        <div class="anti-scam-header">
+          <span class="anti-scam-pill">SECURITY &amp; PRIVACY ADVISORY</span>
+          <h2 id="advisory-title">Why Uploading Passports &amp; Photos to Online Compressors Is a Risk</h2>
+          <p class="anti-scam-subtitle">Most commercial compressors force you to upload high-res images to remote cloud servers, then hit you with a 5MB paywall right when you need to submit a form.</p>
+        </div>
+        <div class="anti-scam-grid">
+          <div class="anti-scam-col scam-col">
+            <div class="col-badge bad">✕ THE COMMERCIAL CLOUD TRAP</div>
+            <h3>Competitors (TinyPNG / ILoveIMG)</h3>
+            <ul>
+              <li><strong>The 5MB Paywall:</strong> Modern smartphone photos are 8MB to 16MB. TinyPNG rejects them outright to force a $39/year subscription.</li>
+              <li><strong>Cloud Storage &amp; Privacy Leaks:</strong> Sensitive ID cards, passports, tax forms, and unreleased company assets are uploaded across the internet to third-party AWS instances.</li>
+              <li><strong>Guessing Sliders:</strong> Forcing you to adjust vague percentage sliders 5 to 10 times to meet strict passport upload caps.</li>
+            </ul>
+          </div>
+          <div class="anti-scam-col safe-col">
+            <div class="col-badge good">✓ THE SOVEREIGN STANDARD</div>
+            <h3>ShrinkMyPhoto (100% In-Browser)</h3>
+            <ul>
+              <li><strong>Zero Cloud Leaks:</strong> Images never leave your machine. Processed entirely in memory via HTML5 Canvas. Air-gap verifiable.</li>
+              <li><strong>Zero File Size Caps:</strong> No artificial 5MB walls. We process any image your local device RAM can hold at $0 infrastructure cost.</li>
+              <li><strong>Mathematical Bisection:</strong> Enter the exact KB number (or click a portal preset) and our algorithm finds the highest possible fidelity automatically.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS SECTION -->
+    <section class="how-it-works-section" id="how-it-works" aria-labelledby="how-title">
+      <div class="section-heading">
+        <p class="eyebrow"><span class="eyebrow-dot"></span>HOW IT WORKS</p>
+        <h2 id="how-title">Compress Photos in 3 Direct Steps</h2>
+      </div>
+      <div class="steps-grid">
+        <article class="step-card">
+          <span class="step-num">01</span>
+          <h3>Select or Paste Photo</h3>
+          <p>Drop a JPEG, PNG, or WebP photo, browse your files, or press Ctrl+V to paste directly from your clipboard.</p>
+        </article>
+        <article class="step-card">
+          <span class="step-num">02</span>
+          <h3>Pick Exact KB Target</h3>
+          <p>Click a 1-click portal preset (e.g. 200 KB for Schengen Visa or 240 KB for US Visa) or specify custom KB.</p>
+        </article>
+        <article class="step-card">
+          <span class="step-num">03</span>
+          <h3>Export or Copy</h3>
+          <p>Download your crisp compressed image or copy the image directly to your clipboard to paste into documents.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FREQUENTLY ASKED QUESTIONS -->
+    <section class="faq-section" id="faq" aria-labelledby="faq-title">
+      <div class="section-heading">
+        <p class="eyebrow"><span class="eyebrow-dot"></span>FAQ</p>
+        <h2 id="faq-title">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-grid">
+        <details class="faq-item">
+          <summary>Can I safely compress my passport or driver's license here?</summary>
+          <p>Yes, absolutely. Unlike commercial tools, ShrinkMyPhoto does not upload your image to any server. All processing runs 100% inside your browser's local sandbox using the HTML5 Canvas API. No network request is transmitted, and your image vanishes from memory upon page close.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How does the bisection target algorithm work?</summary>
+          <p>Instead of guessing with an arbitrary quality slider, our engine uses binary search to mathematically converge on the highest possible quality and dimension scale that stays strictly under your target KB threshold.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does canvas compression remove EXIF and GPS coordinates?</summary>
+          <p>Yes. Re-encoding an image through the browser's 2D canvas pipeline strips proprietary EXIF headers, camera serial numbers, and embedded GPS metadata, protecting your location privacy before sharing.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What formats are supported?</summary>
+          <p>You can compress JPEG, PNG, and WebP still images. You can convert between formats, keeping PNG transparency or flattening to white for JPEG output.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- SOVEREIGN SITEMAP FOOTER HUB -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand-col">
+        <a class="brand othrys-brand" href="./" aria-label="ShrinkMyPhoto home">
+          <span class="brand-main">ShrinkMy<strong>Photo</strong></span>
+          <small class="brand-signature">powered by OTHRYS</small>
+        </a>
+        <p class="footer-mission">
+          Sovereign, 100% client-side photo compressor. Engineered for precision target KB compliance, absolute privacy, and zero cloud surveillance.
+        </p>
+      </div>
+
+      <div class="footer-actions-col">
+        <div class="footer-badge-item">
+          <span class="green-indicator">●</span>
+          <span>Zero Cloud Uploads · Air-Gap Safe</span>
+        </div>
+        <div class="footer-badge-item">
+          <span class="green-indicator">●</span>
+          <span>Zero Tracking Cookies · 100% Private</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-sitemap-grid">
+      <div class="sitemap-col">
+        <h4>Target Presets</h4>
+        <ul>
+          <li><a href="#settings">US Visa (&lt; 240 KB)</a></li>
+          <li><a href="#settings">Schengen / Passport (&lt; 200 KB)</a></li>
+          <li><a href="#settings">Gov Forms (&lt; 100 KB)</a></li>
+          <li><a href="#settings">Discord Attachment (&lt; 10 MB)</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-col">
+        <h4>Features &amp; Security</h4>
+        <ul>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#security-advisory">Privacy Advisory</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="https://othrys.be/architecture" target="_blank" rel="noopener">Sovereign Architecture</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-col">
+        <h4>Sovereign Fleet</h4>
+        <ul>
+          <li><a href="https://freeqr.othrys.be" target="_blank" rel="noopener">FreeQR Generator</a></li>
+          <li><a href="https://quickpercent.othrys.be" target="_blank" rel="noopener">QuickPercent</a></li>
+          <li><a href="https://unixtime.othrys.be" target="_blank" rel="noopener">UnixTime Converter</a></li>
+          <li><a href="https://othrys.be/architecture" target="_blank" rel="noopener">Fleet Telemetry ↗</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-col">
+        <h4>Source &amp; Network</h4>
+        <ul>
+          <li><a href="https://othrys.be" target="_blank" rel="noopener">OTHRYS Hub</a></li>
+          <li><a href="https://github.com/vtcbelgium/shrinkmyphoto" target="_blank" rel="noopener">GitHub Repository</a></li>
+          <li><a href="/robots.txt">Robots.txt</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 OTHRYS. Engineered under the Sovereign Open Architecture in Belgium.</span>
+      <span class="sovereign-tag">100% Client-Side · Zero Cookies · Zero Cloud Tracking</span>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
