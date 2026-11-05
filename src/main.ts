@@ -298,19 +298,36 @@ form.addEventListener('submit', async (e) => {
   }
 });
 
-// Copy Image Directly to Clipboard
+// Copy Image Directly to Clipboard (with Universal Browser PNG Conversion)
 copyImageBtn?.addEventListener('click', async () => {
-  if (!lastResultBlob) return;
+  if (!lastResultBlob || !resultUrl) return;
   try {
     if (navigator.clipboard && typeof ClipboardItem !== 'undefined') {
+      let pngBlob = lastResultBlob;
+      // Browsers like Chrome/Edge only permit 'image/png' on clipboard write
+      if (lastResultBlob.type !== 'image/png') {
+        const img = new Image();
+        img.src = resultUrl;
+        await img.decode();
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.drawImage(img, 0, 0);
+          const converted = await new Promise<Blob | null>((res) => canvas.toBlob(res, 'image/png'));
+          if (converted) pngBlob = converted;
+        }
+      }
       await navigator.clipboard.write([
-        new ClipboardItem({ [lastResultBlob.type]: lastResultBlob })
+        new ClipboardItem({ 'image/png': pngBlob })
       ]);
-      showToast('Compressed image copied to clipboard! Ready to paste into Slack, Figma, or email.');
+      showToast('Compressed image copied to clipboard! (Ready to paste)');
       return;
     }
     throw new Error('ClipboardItem unsupported');
-  } catch {
+  } catch (err) {
+    console.error('Clipboard copy failed:', err);
     showToast('Direct image clipboard unsupported in this browser. Please use Download photo.');
   }
 });
