@@ -1,3 +1,4 @@
+import './style.css';
 import { inspect, MAX_BYTES, validateDimensions, targetBytes, formatBytes, needsFlatten, savings, targetMessage, search, type Format } from './logic';
 import { initThemeController } from './theme';
 import { showToast } from './toast';
