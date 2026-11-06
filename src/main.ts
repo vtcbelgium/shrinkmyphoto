@@ -350,5 +350,22 @@ if (!supported) {
   error('This browser lacks local canvas tools. Please use a modern browser.');
 }
 
+// URL Query Parameter preset handling (?target=100&format=image/jpeg)
+try {
+  const params = new URLSearchParams(window.location.search);
+  const targetParam = params.get('target');
+  const formatParam = params.get('format');
+  if (targetParam && Number(targetParam) > 0) {
+    targetInput.value = targetParam;
+    settingsChanged();
+  }
+  if (formatParam && ['keep', 'image/jpeg', 'image/png', 'image/webp'].includes(formatParam)) {
+    formatInput.value = formatParam;
+    settingsChanged();
+  }
+} catch {
+  // Graceful fallback
+}
+
 // Initialize Theme Controller
 initThemeController();
