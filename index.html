@@ -37,7 +37,52 @@
     "description": "Compress JPEG, PNG and WebP photos directly in your browser. Choose an exact KB target size with zero cloud uploads.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any",
-    "isAccessibleForFree": true
+    "isAccessibleForFree": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I safely compress my passport or driver's license here?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, absolutely. Unlike commercial tools, ShrinkMyPhoto does not upload your image to any server. All processing runs 100% inside your browser's local sandbox using the HTML5 Canvas API. No network request is transmitted, and your image vanishes from memory upon page close."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the bisection target algorithm work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Instead of guessing with an arbitrary quality slider, our engine uses binary search to mathematically converge on the highest possible quality and dimension scale that stays strictly under your target KB threshold."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does canvas compression remove EXIF and GPS coordinates?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Re-encoding an image through the browser's 2D canvas pipeline strips proprietary EXIF headers, camera serial numbers, and embedded GPS metadata, protecting your location privacy before sharing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What formats are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can compress JPEG, PNG, and WebP still images. You can convert between formats, keeping PNG transparency or flattening to white for JPEG output."
+        }
+      }
+    ]
   }
   </script>
 </head>
