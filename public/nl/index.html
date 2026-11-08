@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Foto Verkleinen & Comprimeren (Gratis naar 20KB, 50KB, 100KB) | ShrinkMyPhoto</title>
+  <meta name="description" content="Verklein en comprimeer foto's gratis direct in je browser. Kies een exacte bestandsgrootte (20KB, 50KB, 100KB). 100% privé, foto's verlaten nooit je apparaat.">
+  <link rel="canonical" href="https://shrinkmyphoto.othrys.be/nl/">
+  <link rel="alternate" hreflang="en" href="https://shrinkmyphoto.othrys.be/">
+  <link rel="alternate" hreflang="nl" href="https://shrinkmyphoto.othrys.be/nl/">
+  <link rel="alternate" hreflang="fr" href="https://shrinkmyphoto.othrys.be/fr/">
+  <meta property="og:title" content="Foto Verkleinen & Comprimeren | ShrinkMyPhoto">
+  <meta property="og:description" content="Comprimeer foto's direct in je browser naar exacte bestandsgroottes. 100% privé en gratis.">
+  <meta property="og:image" content="https://shrinkmyphoto.othrys.be/og-image.svg">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; line-height: 1.5; }
+    .container { max-width: 800px; margin: 0 auto; }
+    .hero { text-align: center; padding: 40px 0 20px; }
+    h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; color: #f8fafc; }
+    p.lead { font-size: 1.15rem; color: #94a3b8; max-width: 600px; margin: 0 auto; }
+    .dropzone { border: 2px dashed #38bdf8; border-radius: 16px; padding: 40px; text-align: center; background: rgba(56, 189, 248, 0.04); cursor: pointer; margin: 24px 0; transition: background 0.2s; }
+    .dropzone:hover { background: rgba(56, 189, 248, 0.08); }
+    .targets { display: flex; justify-content: center; gap: 12px; margin: 20px 0; }
+    .target-btn { background: #1e293b; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+    .target-btn.active { background: #38bdf8; color: #0f172a; border-color: #38bdf8; }
+    .faq { margin-top: 48px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 32px; }
+    .faq-item { margin-bottom: 20px; }
+    .faq-q { font-weight: 700; font-size: 1.1rem; color: #38bdf8; margin-bottom: 6px; }
+    .faq-a { color: #cbd5e1; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <h1>Foto Verkleinen & Comprimeren</h1>
+      <p class="lead">100% lokaal in je browser. Converteer en comprimeer foto's naar exacte limieten voor overheid, paspoort, sollicitaties en web.</p>
+    </div>
+
+    <div class="targets">
+      <button class="target-btn active">Exact 50 KB</button>
+      <button class="target-btn">Exact 100 KB</button>
+      <button class="target-btn">Exact 200 KB</button>
+    </div>
+
+    <div class="dropzone" onclick="window.location.href='/'">
+      <p style="font-size: 1.2rem; font-weight: 600; margin-bottom: 6px;">Sleep een afbeelding hierheen of klik om te uploaden</p>
+      <p style="color: #94a3b8; font-size: 0.9rem;">JPG, PNG, WebP tot 50MB • Wordt lokaal verwerkt</p>
+    </div>
+
+    <div class="faq">
+      <h2>Veelgestelde Vragen</h2>
+      <div class="faq-item">
+        <div class="faq-q">Worden mijn foto's naar een server verstuurd?</div>
+        <div class="faq-a">Nee, nooit. ShrinkMyPhoto gebruikt WebAssembly en HTML5 Canvas direct op je apparaat. Geen enkele byte verlaat je browser.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Hoe verklein ik een foto naar 50KB voor een paspoort of visum?</div>
+        <div class="faq-a">Kies eenvoudig 'Exact 50 KB', upload je foto en download het geoptimaliseerde bestand direct.</div>
+      </div>
+    </div>
+  </div>
+  <script src="/fleet-spotlight.js" defer></script>
+</body>
+</html>
