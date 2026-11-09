@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://shrinkmyphoto.othrys.be/</loc><lastmod>2026-11-08</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://shrinkmyphoto.othrys.be/tools/</loc><lastmod>2026-11-08</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://shrinkmyphoto.othrys.be/tools/compress-image-to-50kb/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://shrinkmyphoto.othrys.be/tools/compress-image-to-100kb/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://shrinkmyphoto.othrys.be/tools/compress-image-to-20kb/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://shrinkmyphoto.othrys.be/tools/ds160-visa-photo-compressor/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://shrinkmyphoto.othrys.be/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://shrinkmyphoto.othrys.be/nl/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://shrinkmyphoto.othrys.be/fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://shrinkmyphoto.othrys.be/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://shrinkmyphoto.othrys.be/"/>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://shrinkmyphoto.othrys.be/nl/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://shrinkmyphoto.othrys.be/nl/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://shrinkmyphoto.othrys.be/fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://shrinkmyphoto.othrys.be/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://shrinkmyphoto.othrys.be/"/>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://shrinkmyphoto.othrys.be/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://shrinkmyphoto.othrys.be/nl/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://shrinkmyphoto.othrys.be/fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://shrinkmyphoto.othrys.be/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://shrinkmyphoto.othrys.be/"/>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
 </urlset>
