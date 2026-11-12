@@ -1,36 +1,52 @@
 /* ==========================================================================
-   SHRINKMYPHOTO — SOVEREIGN SILICON VALLEY DESIGN SYSTEM
+   OTHRYS ARCHITECTURAL UTILITY DESIGN SYSTEM
+   Precision Obsidian & Crisp Paper · Zero Slop · Local Execution
    ========================================================================== */
 
 :root {
+  color-scheme: light dark;
   --font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  
-  /* Paper Light Theme Defaults */
-  --bg: #ffffff;
-  --surface: #f8fafc;
-  --surface-secondary: #f1f5f9;
-  --border: #e2e8f0;
-  --text: #0f172a;
-  --muted: #475569;
-  --subtle: #94a3b8;
-  --accent: #10b981;
-  --accent-hover: #059669;
-  --accent-glow: rgba(16, 185, 129, 0.15);
-  --danger: #ef4444;
-  --danger-bg: rgba(239, 68, 68, 0.08);
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Crisp Paper Light Theme */
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --surface-secondary: #f4f4f5;
+  --border: #e4e4e7;
+  --border-strong: #a1a1aa;
+  --text: #090b10;
+  --muted: #525866;
+  --subtle: #71717a;
+  --accent: #090b10;
+  --accent-hover: #27272a;
+  --accent-glow: rgba(9, 11, 16, 0.05);
+  --cta-bg: #090b10;
+  --cta-ink: #ffffff;
+  --cta-hover: #27272a;
+  --live: #059669;
+  --danger: #dc2626;
+  --danger-bg: rgba(220, 38, 38, 0.06);
 }
 
 html[data-theme="dark"] {
-  --bg: #030712;
-  --surface: #0b0f19;
-  --surface-secondary: #111827;
-  --border: #1f293d;
-  --text: #f9fafb;
-  --muted: #9ca3af;
-  --subtle: #4b5563;
-  --accent: #10b981;
-  --accent-hover: #34d399;
-  --accent-glow: rgba(16, 185, 129, 0.22);
+  color-scheme: dark;
+  --bg: #090b10;
+  --surface: #0e121a;
+  --surface-secondary: #141a24;
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --text: #f3f5f8;
+  --muted: #939eab;
+  --subtle: #687486;
+  --accent: #f3f5f8;
+  --accent-hover: #ffffff;
+  --accent-glow: rgba(255, 255, 255, 0.05);
+  --cta-bg: #f3f5f8;
+  --cta-ink: #090b10;
+  --cta-hover: #ffffff;
+  --live: #34d399;
+  --danger: #f87171;
+  --danger-bg: rgba(248, 113, 113, 0.08);
 }
 
 * {
@@ -129,10 +145,10 @@ body {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 2px 7px;
-  border-radius: 9999px;
+  border-radius: 6px;
   background: var(--accent-glow);
   color: var(--accent);
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  border: 1px solid var(--border);
 }
 
 .brand-signature {
@@ -155,7 +171,7 @@ body {
   color: var(--muted);
   text-decoration: none;
   padding: 6px 12px;
-  border-radius: 9999px;
+  border-radius: 6px;
   border: 1px solid var(--border);
   background: var(--surface);
   transition: all 0.15s ease;
@@ -172,7 +188,7 @@ body {
   color: var(--muted);
   width: 34px;
   height: 34px;
-  border-radius: 9999px;
+  border-radius: 6px;
   cursor: pointer;
   display: grid;
   place-items: center;
@@ -211,8 +227,8 @@ body {
   color: var(--accent);
   background: var(--accent-glow);
   padding: 4px 12px;
-  border-radius: 9999px;
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 6px;
+  border: 1px solid var(--border);
 }
 
 .eyebrow-dot {
@@ -220,7 +236,7 @@ body {
   height: 6px;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 8px var(--accent);
+  background: var(--live);
 }
 
 h1 {
@@ -252,9 +268,9 @@ h1 {
 .workspace-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .workspace-top {
@@ -283,7 +299,7 @@ h1 {
   border-radius: 6px;
   background: var(--accent-glow);
   color: var(--accent);
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  border: 1px solid var(--border);
 }
 
 .workspace-top h2 {
@@ -307,7 +323,7 @@ h1 {
 
 .drop-zone {
   border: 2px dashed var(--border);
-  border-radius: 16px;
+  border-radius: 10px;
   padding: 44px 24px;
   text-align: center;
   background: var(--surface-secondary);
@@ -362,12 +378,13 @@ h1 {
 }
 
 .button.primary {
-  background: var(--accent);
-  color: #ffffff;
+  background: var(--cta-bg);
+  color: var(--cta-ink);
+  border: 1px solid var(--cta-bg);
 }
 
 .button.primary:hover:not(:disabled) {
-  background: var(--accent-hover);
+  background: var(--cta-hover);
   transform: translateY(-1px);
 }
 
@@ -706,9 +723,9 @@ input[type="number"]:focus, select:focus {
 .anti-scam-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 12px;
   padding: 36px 40px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .anti-scam-pill {
@@ -746,7 +763,7 @@ input[type="number"]:focus, select:focus {
 
 .anti-scam-col {
   padding: 24px;
-  border-radius: 14px;
+  border-radius: 10px;
   border: 1px solid var(--border);
 }
 
@@ -757,7 +774,7 @@ input[type="number"]:focus, select:focus {
 
 .anti-scam-col.safe-col {
   background: var(--accent-glow);
-  border-color: rgba(16, 185, 129, 0.25);
+  border-color: var(--border);
 }
 
 .col-badge {
@@ -776,7 +793,7 @@ input[type="number"]:focus, select:focus {
 }
 
 .col-badge.good {
-  background: rgba(16, 185, 129, 0.2);
+  background: var(--border);
   color: var(--accent);
 }
 
@@ -833,7 +850,7 @@ input[type="number"]:focus, select:focus {
 .step-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 10px;
   padding: 28px;
 }
 
@@ -843,7 +860,7 @@ input[type="number"]:focus, select:focus {
   color: var(--accent);
   background: var(--accent-glow);
   padding: 4px 9px;
-  border-radius: 9999px;
+  border-radius: 6px;
   display: inline-block;
   margin-bottom: 16px;
 }
@@ -1037,4 +1054,46 @@ input[type="number"]:focus, select:focus {
   * {
     transition: none !important;
   }
+}
+
+
+/* Architectural Precision Overrides */
+.sovereign-status-badge,
+.eyebrow,
+.step-badge-wrap,
+.local-badge,
+.step-label,
+.unit-badge,
+.result-tag,
+.anti-scam-pill,
+.col-badge,
+.step-num,
+.example-badge,
+.advisory-eyebrow,
+.clean-badge,
+.formula-title,
+.brand-signature,
+.nav-fleet-pill {
+  font-family: var(--font-mono);
+}
+
+.eyebrow-dot,
+.green-indicator {
+  color: var(--live);
+}
+
+.eyebrow-dot {
+  background: var(--live);
+  box-shadow: none;
+}
+
+.answer-display,
+.stats-highlight,
+input[type="number"] {
+  font-variant-numeric: tabular-nums;
+}
+
+.brand-main strong {
+  color: var(--text);
+  font-weight: 700;
 }
