@@ -27,7 +27,7 @@ PAGES = [
             },
             {
                 "q": "Is it safe to compress sensitive ID or passport photos here?",
-                "a": "Yes, absolutely. ShrinkMyPhoto is 100% sovereign and client-side. Your photos never leave your device, are never uploaded to any server, and no cookies or trackers exist."
+                "a": "Yes, absolutely. ShrinkMyPhoto is 100% sovereign and client-side. Your photos never leave your device, are never uploaded to any server, and no cookies or third-party trackers exist."
             },
             {
                 "q": "Which file formats are supported?",

@@ -10,7 +10,7 @@
   <meta property="og:description" content="Compress JPEG, PNG and WebP photos directly in your browser. Choose an exact KB target size with zero cloud uploads.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#090b10">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' blob: data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' ws://127.0.0.1:*; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' blob: data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://stats.othrys.be ws://127.0.0.1:*; object-src 'none'; base-uri 'self'; form-action 'none'">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="search" type="application/opensearchdescription+xml" title="ShrinkMyPhoto" href="/opensearch.xml" />
   <link rel="canonical" href="https://shrinkmyphoto.othrys.be/">
@@ -56,7 +56,7 @@
         "name": "Can I safely compress my passport or driver's license here?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, absolutely. Unlike commercial tools, ShrinkMyPhoto does not upload your image to any server. All processing runs 100% inside your browser's local sandbox using the HTML5 Canvas API. No network request is transmitted, and your image vanishes from memory upon page close."
+          "text": "Yes, absolutely. Unlike commercial tools, ShrinkMyPhoto does not upload your image to any server. All processing runs 100% inside your browser's local sandbox using the HTML5 Canvas API. No image bytes leave your browser, your image vanishes from memory upon page close, and zero cookies or third-party trackers run (only anonymous, cookieless page-view counts via stats.othrys.be respecting Do Not Track / GPC with 90-day expiry)."
         }
       },
       {
@@ -104,7 +104,7 @@
             </svg>
           </span>
           <span class="brand-main">ShrinkMy<strong>Photo</strong></span>
-          <span class="sovereign-status-badge" title="No cloud uploads, tracking, or registration required">Sovereign</span>
+          <span class="sovereign-status-badge" title="No cloud uploads, third-party tracking, or registration required">Sovereign</span>
         </div>
         <small class="brand-signature">powered by OTHRYS</small>
       </a>
@@ -324,7 +324,7 @@
       <div class="faq-grid">
         <details class="faq-item">
           <summary>Can I safely compress my passport or driver's license here?</summary>
-          <p>Yes, absolutely. Unlike commercial tools, ShrinkMyPhoto does not upload your image to any server. All processing runs 100% inside your browser's local sandbox using the HTML5 Canvas API. No network request is transmitted, and your image vanishes from memory upon page close.</p>
+          <p>Yes, absolutely. Unlike commercial tools, ShrinkMyPhoto does not upload your image to any server. All processing runs 100% inside your browser's local sandbox using the HTML5 Canvas API. No image bytes leave your browser, your image vanishes from memory upon page close, and zero cookies or third-party trackers run (only anonymous, cookieless page-view counts via stats.othrys.be respecting Do Not Track / GPC with 90-day expiry).</p>
         </details>
         <details class="faq-item">
           <summary>How does the bisection target algorithm work?</summary>
@@ -419,7 +419,7 @@
 
     <div class="footer-bottom">
       <span>© 2026 OTHRYS. Engineered under the Sovereign Open Architecture in Belgium.</span>
-      <span class="sovereign-tag">100% Client-Side · Zero Cookies · Zero Cloud Tracking</span>
+      <span class="sovereign-tag">100% Client-Side · Zero Cookies · Zero Cloud Storage</span>
     </div>
   </footer>
 
@@ -427,6 +427,7 @@
 
   <aside id="othrys-cluster-mesh" aria-label="Directory and Related Workflow Tools" style="max-width:960px;margin:24px auto;padding:12px 16px;font:13px/1.5 system-ui,sans-serif;text-align:center;opacity:0.85;border-top:1px solid rgba(128,128,128,0.2);"><strong><a href="/tools/" style="color:inherit;text-decoration:underline;">Explore All ShrinkMyPhoto Tools &amp; Presets</a></strong> &bull; Related Client-Side Tools: <a href="https://webptopng.othrys.be/" style="color:inherit;text-decoration:underline;">WebPtoPNG (Zero-Upload WebP to PNG/JPG Converter)</a> &bull; <a href="https://favicon.othrys.be/" style="color:inherit;text-decoration:underline;">FaviconGen (Multi-Size ICO, PNG & SVG Favicon Packager)</a> &bull; <a href="https://freeqr.othrys.be/" style="color:inherit;text-decoration:underline;">FreeQR (Static Zero-Expiration Vector QR Generator)</a></aside>
 <script src="/fleet-spotlight.js" defer></script>
+<script src="/stats.js" defer></script>
 
 <!-- OTHRYS Contextual Next Tool Recommendation -->
 <div class="othrys-next-recommendation" style="margin:28px auto;max-width:760px;padding:12px 18px;background:#1e293b;border:1px solid rgba(255,255,255,0.12);border-radius:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:system-ui,-apple-system,sans-serif;font-size:13px;">
