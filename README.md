@@ -5,7 +5,7 @@
 [![Cookies](https://img.shields.io/badge/Cookies-0-blue?style=flat-square)](https://shrinkmyphoto.othrys.be)
 [![WCAG AA](https://img.shields.io/badge/Accessibility-WCAG_AA-blueviolet?style=flat-square)](https://shrinkmyphoto.othrys.be)
 
-> Fast, private, client-side on-device photo compressor to exact 20KB, 50KB or 100KB limits. Runs 100% in your browser with zero server uploads, zero cookies, and zero tracking.
+> Fast, private, client-side on-device photo compressor to exact 20KB, 50KB or 100KB limits. Runs 100% in your browser with zero server uploads, zero cookies, and zero third-party tracking.
 
 ## Features
 - **100% Client-Side:** Files and confidential data never leave your device.
@@ -38,9 +38,9 @@ On PowerShell installations that block npm.ps1, use `npm.cmd` instead. Productio
 
 ## Privacy
 
-Image bytes stay on the device. The app uses `createImageBitmap`, canvas and `toBlob`; it never uploads an image or calls a compression service. It has no analytics, tracking, cookies, local storage, remote fonts, remote images, authentication or external runtime requests. The hosting provider still sees ordinary page requests and may log IP addresses. Downloaded files are controlled by the browser and user.
+Image bytes stay on the device. The app uses `createImageBitmap`, canvas and `toBlob`; it never uploads an image or calls a compression service. Image data has zero server upload, cookies, local storage, remote fonts, remote images, or third-party tracking; only anonymous, cookieless page-view counts (stats.othrys.be, respecting Do Not Track / GPC, 90-day expiry) run. The hosting provider still sees ordinary page requests and may log IP addresses. Downloaded files are controlled by the browser and user.
 
-Blob URLs are revoked on replacement, removal and page exit. Decoded bitmaps are closed and temporary canvases are cleared. Reloading loses the working image. Canvas re-encoding normally drops EXIF/GPS metadata, but the app is not a forensic metadata sanitizer. A strict same-origin CSP is included; its localhost WebSocket allowance supports Vite development. For a future production host, use an HTTP CSP header with `connect-src 'none'` and `frame-ancestors 'none'` after testing.
+Blob URLs are revoked on replacement, removal and page exit. Decoded bitmaps are closed and temporary canvases are cleared. Reloading loses the working image. Canvas re-encoding normally drops EXIF/GPS metadata, but the app is not a forensic metadata sanitizer. A strict same-origin CSP is included; its localhost WebSocket allowance supports Vite development. For a future production host, use an HTTP CSP header with `connect-src 'self' https://stats.othrys.be` and `frame-ancestors 'none'` after testing.
 
 ## Compression behavior and limits
 
