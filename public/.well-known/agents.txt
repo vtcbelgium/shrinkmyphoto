@@ -1,0 +1,7 @@
+Name: ShrinkMyPhoto
+URL: https://shrinkmyphoto.othrys.be/
+Description: Client-side image compressor that shrinks JPEG, PNG and WebP photos to exact file-size targets (20KB, 50KB, 100KB) entirely in the browser. No account and no server uploads.
+LLMs-Txt: https://shrinkmyphoto.othrys.be/llms.txt
+Sitemap: https://shrinkmyphoto.othrys.be/sitemap.xml
+Protocol: public-read-only
+Privacy: zero-tracking-cookies, local-browser-execution, zero-cloud-uploads
