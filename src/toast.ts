@@ -5,7 +5,7 @@ export function showToast(message: string, duration = 3000) {
     container = document.createElement('div');
     container.id = 'toast-container';
     container.setAttribute('aria-live', 'polite');
-    container.style.cssText = 'position:fixed;bottom:24px;right:24px;display:flex;flex-direction:column;gap:8px;z-index:9999;pointer-events:none;';
+    container.style.cssText = 'position:fixed;bottom:70px;right:24px;display:flex;flex-direction:column;gap:8px;z-index:9999;pointer-events:none;';
     document.body.appendChild(container);
   }
 
